@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="utility.css" />
+</head>
+
+<body>
+
+        <!-- Mood Selector Modal -->
+
+    <div class="mood-selector-overlay" id="moodSelectorOverlay">
+<div class="overlay-card">
+    <h2>What's Your Mood Today?</h2>
+    <p>Select your mood to get song recommendations:</p>
+    <div class="mood-options">
+
+        <button class="mood-btn" data-mood="happy">Happy</button>
+        <button class="mood-btn" data-mood="sad">Sad</button>
+      <button class="mood-btn" data-mood = "energetic"> Energetic </button>
+    </div>
+    <p>Or skip to see all songs:</p>
+    <button class="skip-btn">Skip</button>
+</div>
+</div>
+
+<!-- HTML for the loader -->
+<div class="loader">
+    <div class="loader-square"></div>
+    <div class="loader-square"></div>
+    <div class="loader-square"></div>
+    <div class="loader-square"></div>
+    <div class="loader-square"></div>
+    <div class="loader-square"></div>
+    <div class="loader-square"></div>
+    </div>
+
+    <!-- Cross button -->
+
+    <div class = "cross-btn">
+        <img src = "icons8-cross-30.png" class = "invert">
+    </div>
+    <!-- Previous made html -->
+    <div class="container flex bg-black">
+        <div class="left bg-black">
+                
+                
+            <div class="library bg-gray m-1 p-2 rounded">
+                <div class="libraray-main flex items-center">
+                    <div class="library-header flex items-center">
+                        <img src="library.svg" class="invert svg-size" />
+                        <p class="l-header-p">Songs Playlist</p>
+                    </div>
+                    <img src="playlist.svg" class="playlist-svg invert" />
+                </div>
+                <div class="songList">
+                    <ul></ul>
+                </div>
+                <footer class="library-footer">
+                    <div class="main">
+                      <div class="up">
+                        
+                        <button class="card1">
+                          <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0,0,256,256" width="30px" height="30px" fill-rule="nonzero" class="instagram"><g fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" font-family="none" font-weight="none" font-size="none" text-anchor="none" style="mix-blend-mode: normal"><g transform="scale(8,8)"><path d="M11.46875,5c-3.55078,0 -6.46875,2.91406 -6.46875,6.46875v9.0625c0,3.55078 2.91406,6.46875 6.46875,6.46875h9.0625c3.55078,0 6.46875,-2.91406 6.46875,-6.46875v-9.0625c0,-3.55078 -2.91406,-6.46875 -6.46875,-6.46875zM11.46875,7h9.0625c2.47266,0 4.46875,1.99609 4.46875,4.46875v9.0625c0,2.47266 -1.99609,4.46875 -4.46875,4.46875h-9.0625c-2.47266,0 -4.46875,-1.99609 -4.46875,-4.46875v-9.0625c0,-2.47266 1.99609,-4.46875 4.46875,-4.46875zM21.90625,9.1875c-0.50391,0 -0.90625,0.40234 -0.90625,0.90625c0,0.50391 0.40234,0.90625 0.90625,0.90625c0.50391,0 0.90625,-0.40234 0.90625,-0.90625c0,-0.50391 -0.40234,-0.90625 -0.90625,-0.90625zM16,10c-3.30078,0 -6,2.69922 -6,6c0,3.30078 2.69922,6 6,6c3.30078,0 6,-2.69922 6,-6c0,-3.30078 -2.69922,-6 -6,-6zM16,12c2.22266,0 4,1.77734 4,4c0,2.22266 -1.77734,4 -4,4c-2.22266,0 -4,-1.77734 -4,-4c0,-2.22266 1.77734,-4 4,-4z"></path></g></g></svg>
+                        </button>
+                        <a href = "https://www.linkedin.com/in/shahzaib-ashfaq-16ba39294/">
+                        <button class="card2">
+                            <?xml version="1.0" encoding="iso-8859-1"?>
+                            <!-- Uploaded to: SVG Repo, www.svgrepo.com, Generator: SVG Repo Mixer Tools -->
+                            <svg fill="#000000" height="25px" width="25px" class = "twitter" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
+                                 viewBox="0 0 310 310" xml:space="preserve">
+                            <g id="XMLID_801_">
+                                <path id="XMLID_802_" d="M72.16,99.73H9.927c-2.762,0-5,2.239-5,5v199.928c0,2.762,2.238,5,5,5H72.16c2.762,0,5-2.238,5-5V104.73
+                                    C77.16,101.969,74.922,99.73,72.16,99.73z"/>
+                                <path id="XMLID_803_" d="M41.066,0.341C18.422,0.341,0,18.743,0,41.362C0,63.991,18.422,82.4,41.066,82.4
+                                    c22.626,0,41.033-18.41,41.033-41.038C82.1,18.743,63.692,0.341,41.066,0.341z"/>
+                                <path id="XMLID_804_" d="M230.454,94.761c-24.995,0-43.472,10.745-54.679,22.954V104.73c0-2.761-2.238-5-5-5h-59.599
+                                    c-2.762,0-5,2.239-5,5v199.928c0,2.762,2.238,5,5,5h62.097c2.762,0,5-2.238,5-5v-98.918c0-33.333,9.054-46.319,32.29-46.319
+                                    c25.306,0,27.317,20.818,27.317,48.034v97.204c0,2.762,2.238,5,5,5H305c2.762,0,5-2.238,5-5V194.995
+                                    C310,145.43,300.549,94.761,230.454,94.761z"/>
+                            </g>
+                            </svg>
+                        </button>
+                    </a>
+                      </div>
+                      <div class="down">
+                        <a href = "https://github.com/ShahzaibAshfaqSal">
+                        <button class="card3">
+                          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30 30" width="30px" height="30px" class="github">    <path d="M15,3C8.373,3,3,8.373,3,15c0,5.623,3.872,10.328,9.092,11.63C12.036,26.468,12,26.28,12,26.047v-2.051 c-0.487,0-1.303,0-1.508,0c-0.821,0-1.551-0.353-1.905-1.009c-0.393-0.729-0.461-1.844-1.435-2.526 c-0.289-0.227-0.069-0.486,0.264-0.451c0.615,0.174,1.125,0.596,1.605,1.222c0.478,0.627,0.703,0.769,1.596,0.769 c0.433,0,1.081-0.025,1.691-0.121c0.328-0.833,0.895-1.6,1.588-1.962c-3.996-0.411-5.903-2.399-5.903-5.098 c0-1.162,0.495-2.286,1.336-3.233C9.053,10.647,8.706,8.73,9.435,8c1.798,0,2.885,1.166,3.146,1.481C13.477,9.174,14.461,9,15.495,9 c1.036,0,2.024,0.174,2.922,0.483C18.675,9.17,19.763,8,21.565,8c0.732,0.731,0.381,2.656,0.102,3.594 c0.836,0.945,1.328,2.066,1.328,3.226c0,2.697-1.904,4.684-5.894,5.097C18.199,20.49,19,22.1,19,23.313v2.734 c0,0.104-0.023,0.179-0.035,0.268C23.641,24.676,27,20.236,27,15C27,8.373,21.627,3,15,3z"></path></svg>
+                        </button>
+                    </a>
+                        <button class="card4">
+                            <?xml version="1.0" encoding="iso-8859-1"?>
+                            <!-- Uploaded to: SVG Repo, www.svgrepo.com, Generator: SVG Repo Mixer Tools -->
+                            <svg fill="#000000" height="25px" width="25px" class = "discord" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
+                                 viewBox="0 0 308 308" xml:space="preserve">
+                            <g id="XMLID_468_">
+                                <path id="XMLID_469_" d="M227.904,176.981c-0.6-0.288-23.054-11.345-27.044-12.781c-1.629-0.585-3.374-1.156-5.23-1.156
+                                    c-3.032,0-5.579,1.511-7.563,4.479c-2.243,3.334-9.033,11.271-11.131,13.642c-0.274,0.313-0.648,0.687-0.872,0.687
+                                    c-0.201,0-3.676-1.431-4.728-1.888c-24.087-10.463-42.37-35.624-44.877-39.867c-0.358-0.61-0.373-0.887-0.376-0.887
+                                    c0.088-0.323,0.898-1.135,1.316-1.554c1.223-1.21,2.548-2.805,3.83-4.348c0.607-0.731,1.215-1.463,1.812-2.153
+                                    c1.86-2.164,2.688-3.844,3.648-5.79l0.503-1.011c2.344-4.657,0.342-8.587-0.305-9.856c-0.531-1.062-10.012-23.944-11.02-26.348
+                                    c-2.424-5.801-5.627-8.502-10.078-8.502c-0.413,0,0,0-1.732,0.073c-2.109,0.089-13.594,1.601-18.672,4.802
+                                    c-5.385,3.395-14.495,14.217-14.495,33.249c0,17.129,10.87,33.302,15.537,39.453c0.116,0.155,0.329,0.47,0.638,0.922
+                                    c17.873,26.102,40.154,45.446,62.741,54.469c21.745,8.686,32.042,9.69,37.896,9.69c0.001,0,0.001,0,0.001,0
+                                    c2.46,0,4.429-0.193,6.166-0.364l1.102-0.105c7.512-0.666,24.02-9.22,27.775-19.655c2.958-8.219,3.738-17.199,1.77-20.458
+                                    C233.168,179.508,230.845,178.393,227.904,176.981z"/>
+                                <path id="XMLID_470_" d="M156.734,0C73.318,0,5.454,67.354,5.454,150.143c0,26.777,7.166,52.988,20.741,75.928L0.212,302.716
+                                    c-0.484,1.429-0.124,3.009,0.933,4.085C1.908,307.58,2.943,308,4,308c0.405,0,0.813-0.061,1.211-0.188l79.92-25.396
+                                    c21.87,11.685,46.588,17.853,71.604,17.853C240.143,300.27,308,232.923,308,150.143C308,67.354,240.143,0,156.734,0z
+                                     M156.734,268.994c-23.539,0-46.338-6.797-65.936-19.657c-0.659-0.433-1.424-0.655-2.194-0.655c-0.407,0-0.815,0.062-1.212,0.188
+                                    l-40.035,12.726l12.924-38.129c0.418-1.234,0.209-2.595-0.561-3.647c-14.924-20.392-22.813-44.485-22.813-69.677
+                                    c0-65.543,53.754-118.867,119.826-118.867c66.064,0,119.812,53.324,119.812,118.867
+                                    C276.546,215.678,222.799,268.994,156.734,268.994z"/>
+                            </g>
+                            </svg>
+                        </button>
+                      </div>
+                    </div>
+                </footer>
+            </div>
+        </div>
+        <div class="right">
+            <div class="header">
+                <div class="nav">
+                    <div class = "hamBurgerDiv">
+                        <img src = "menu.png" class = "svg-size hamBurger invert">
+                    </div>
+
+                    <div class="header-tags">
+                        <div class="l-a-d">
+                            <img src="left-arrow.svg" class="invert svg-size" />
+                        </div>
+                        <div class="r-a-d">
+                            <img src="right-arrow.svg" class="invert svg-size" />
+                        </div>
+                    </div>
+                    <div class="buttons">
+                        <button class="signUp">Sign up</button>
+                        <button class="logIn btn-31">Log in</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="spotifyPlaylists">
+                <h1>Songs Albums</h1>
+                <div class="cardContainer">
+
+                    <div class="playBar">
+                        <div class="seekBar">
+                            <div class="circle"></div>
+                        </div>
+                        <div class="songInfo"></div>
+                        <div class="songButtons">
+                            
+                            <img id = "previous" src="previous.png " class="svg-size" />
+                            <img id = "play" src="play-button-4210.svg" class="svg-size" />
+                            <img id = "next" src="next-button.png" class="svg-size" />
+                            
+                        </div>
+
+                        <div class = "songTime-Container">
+                            <div class="songTime"></div>
+                            <div class="volume">
+                                <img src = "f974e30f-891f-4677-ae5c-5b99a4a74200.svg" class = "svg-size">
+                                <input type = "range" class = "valRange">
+                            </div>
+                        </div>
+ 
+                    </div>
+                    <div class = "songAlbums">
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

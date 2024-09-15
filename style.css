@@ -1,0 +1,981 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    font-family: roboto;
+}
+.left {
+    width: 25vw;
+    padding: 4px 4px 0px 4px;
+}
+
+.right {
+    width: 75vw;
+    height: 95vh;
+    padding: 10px 0 10px 0;
+    overflow-x: none;
+    position: relative;
+}
+
+
+.home {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    justify-content: center;
+    align-items: center;
+    padding:20px;
+}
+
+/* for the home section */
+
+/* From Uiverse.io by ZacharyCrespin */ 
+@keyframes square-animation {
+    0% {
+     left: 0;
+     top: 0;
+    }
+   
+    10.5% {
+     left: 0;
+     top: 0;
+    }
+   
+    12.5% {
+     left: 32px;
+     top: 0;
+    }
+   
+    23% {
+     left: 32px;
+     top: 0;
+    }
+   
+    25% {
+     left: 64px;
+     top: 0;
+    }
+   
+    35.5% {
+     left: 64px;
+     top: 0;
+    }
+   
+    37.5% {
+     left: 64px;
+     top: 32px;
+    }
+   
+    48% {
+     left: 64px;
+     top: 32px;
+    }
+   
+    50% {
+     left: 32px;
+     top: 32px;
+    }
+   
+    60.5% {
+     left: 32px;
+     top: 32px;
+    }
+   
+    62.5% {
+     left: 32px;
+     top: 64px;
+    }
+   
+    73% {
+     left: 32px;
+     top: 64px;
+    }
+   
+    75% {
+     left: 0;
+     top: 64px;
+    }
+   
+    85.5% {
+     left: 0;
+     top: 64px;
+    }
+   
+    87.5% {
+     left: 0;
+     top: 32px;
+    }
+   
+    98% {
+     left: 0;
+     top: 32px;
+    }
+   
+    100% {
+     left: 0;
+     top: 0;
+    }
+   }
+   
+   .loader {
+    position: absolute;
+    width: 96px;
+    height: 96px;
+    top:70%;
+    left:58%;
+    z-index: 10;
+    transform: rotate(45deg);
+   }
+   
+   .loader-square {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 28px;
+    height: 28px;
+    margin: 2px;
+    border-radius: 0px;
+    background: white;
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    animation: square-animation 10s ease-in-out infinite both;
+   }
+   
+   .loader-square:nth-of-type(0) {
+    animation-delay: 0s;
+   }
+   
+   .loader-square:nth-of-type(1) {
+    animation-delay: -1.4285714286s;
+   }
+   
+   .loader-square:nth-of-type(2) {
+    animation-delay: -2.8571428571s;
+   }
+   
+   .loader-square:nth-of-type(3) {
+    animation-delay: -4.2857142857s;
+   }
+   
+   .loader-square:nth-of-type(4) {
+    animation-delay: -5.7142857143s;
+   }
+   
+   .loader-square:nth-of-type(5) {
+    animation-delay: -7.1428571429s;
+   }
+   
+   .loader-square:nth-of-type(6) {
+    animation-delay: -8.5714285714s;
+   }
+   
+   .loader-square:nth-of-type(7) {
+    animation-delay: -10s;
+   }
+
+/* For lirary section */
+
+   .library {
+    min-height: 42vw;
+    position: relative;
+    display:flex;
+    flex-direction: column;
+    gap:20px;
+}
+
+.library-header {
+    gap: 13px;
+}
+
+.playlist-svg {
+    height: 15px;
+}
+
+.libraray-main {
+    justify-content: space-between;
+}
+/* For the footer section */
+
+/* From Uiverse.io by Praashoo7 */ 
+footer {
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.main {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5em;
+  }
+  
+  .up {
+    display: flex;
+    flex-direction: row;
+    gap: 0.5em;
+  }
+  
+  .down {
+    display: flex;
+    flex-direction: row;
+    gap: 0.5em;
+  }
+  
+  .card1 {
+    width: 90px;
+    height: 90px;
+    outline: none;
+    border: none;
+    background: white;
+    border-radius: 90px 5px 5px 5px;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+    transition: .2s ease-in-out;
+  }
+  
+  .instagram {
+    margin-top: 1.5em;
+    margin-left: 1.2em;
+    fill: #cc39a4;
+  }
+  
+  .card2 {
+    width: 90px;
+    height: 90px;
+    outline: none;
+    border: none;
+    background: white;
+    border-radius: 5px 90px 5px 5px;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+    transition: .2s ease-in-out;
+  }
+  
+  .twitter {
+    margin-top: 1.5em;
+    margin-left: -.9em;
+    fill: #03A9F4;
+  }
+  
+  .card3 {
+    width: 90px;
+    height: 90px;
+    outline: none;
+    border: none;
+    background: white;
+    border-radius: 5px 5px 5px 90px;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+    transition: .2s ease-in-out;
+  }
+  
+  .github {
+    margin-top: -.6em;
+    margin-left: 1.2em;
+  }
+  
+  .card4 {
+    width: 90px;
+    height: 90px;
+    outline: none;
+    border: none;
+    background: white;
+    border-radius: 5px 5px 90px 5px;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+    transition: .2s ease-in-out;
+  }
+  
+  .discord {
+    margin-top: -.9em;
+    margin-left: -1.2em;
+    fill: #8c9eff;
+  }
+  
+  .card1:hover {
+    cursor: pointer;
+    scale: 1.1;
+    background-color: #cc39a4;
+  }
+  
+  .card1:hover .instagram {
+    fill: white;
+  }
+  
+  .card2:hover {
+    cursor: pointer;
+    scale: 1.1;
+    background-color: #03A9F4;
+  }
+  
+  .card2:hover .twitter {
+    fill: white;
+  }
+  
+  .card3:hover {
+    cursor: pointer;
+    scale: 1.1;
+    background-color: black;
+  }
+  
+  .card3:hover .github {
+    fill: white;
+  }
+  
+  .card4:hover {
+    cursor: pointer;
+    scale: 1.1;
+    background-color: #8c9eff;
+  }
+  
+  .card4:hover .discord {
+    fill: white;
+  }
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    background: #101010;
+    z-index: 1000;
+}
+
+.nav {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    align-items: center;
+    text-align: center;
+}
+
+.header-tags {
+    display: flex;
+    gap: 7px;
+}
+
+.header-tags img {
+    height: 15px;
+    color: gray;
+}
+
+.nav {
+    padding: 10px;
+}
+
+.header-tags div {
+    padding: 6px;
+    background: black;
+    border-radius: 40px;
+}
+
+.nav .buttons {
+    display: flex;
+    gap: 20px;
+}
+
+.nav button {
+    font-size: 17px;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+/*
+.header > *{
+padding:20px;
+}
+*/
+.spotifyPlaylists {
+    padding: 10px;
+}
+
+.spotifyPlaylists h1 {
+    color: white;
+    font-size: 23px;
+}
+
+.cardContainer {
+    background-image: url('pexels-daniel-reche-718241-3721941.jpg');
+    background-size: cover; /* Ensures the image covers the container */
+    background-position: center; /* Centers the image */
+    background-repeat: no-repeat; /* Prevents the image from repeating */
+}
+
+.songAlbums {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr); /* Simplified this line */
+    gap: 15px;
+    overflow-x: none;
+    height: 70vh;
+    overflow-y: scroll;
+}
+.card {
+    width: 160px;
+    border-radius: 10px;
+    padding: 10px;
+    position: relative;
+    height:210px;
+}
+
+.card:hover {
+    background: #1E1E1E;
+}
+
+.card img {
+    width: 150px;
+    border-radius: 10px;
+}
+
+.card h2 {
+    font-size: 17px;
+}
+
+.card p {
+    font-size: 14px;
+    color: gray;
+}
+
+.card img {
+    object-fit: contain;
+}
+
+.play {
+    position: absolute;
+    bottom: 80px;
+    right: 0;
+    left: 120px;
+    opacity: 0;
+    transition: 0.5s ease-out;
+}
+
+.card:hover {
+    .play {
+        opacity: 100;
+    }
+}
+
+.signUp {
+    background: #101010;
+    border: none;
+    color: gray;
+}
+
+.signUp:hover {
+    color: white;
+}
+
+.logIn {
+    background: white;
+    padding: 13px 25px;
+    border-radius: 20px;
+    border: none;
+}
+
+   
+
+
+.logIn:hover {
+    background: #F0F0F0;
+    transform: scale(1.1);
+}
+
+.playBar {
+    position: absolute;
+    bottom: 5px;
+    background: #ffffff;
+    width: 94%;
+    padding: 12px;
+    display: grid;
+    grid-template-columns: 2fr 1fr 2fr;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 1;
+}
+
+.songButtons {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+.songButtons img {
+    cursor:pointer;
+}
+.songList {
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    background: black;
+    margin-top: 5px;
+    height: 45vh;
+    overflow-x: hidden;
+    overflow-y: scroll;
+}
+
+.songList ul {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.songList li {
+    list-style-type: decimal;
+    display: flex;
+    gap: 18px;
+    border: 2px solid white;
+    overflow: hidden;
+    padding: 7px;
+    align-items: center;
+    border-radius: 10px 15px;
+}
+
+.songList li .info {
+    width: 140px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    font-size: 15px;
+}
+
+.svg-size {
+    width: 24px;
+    height: 24px;
+}
+
+.songName {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 100%;
+}
+
+.seekBar {
+    background: red;
+    width: 97%;
+    position: absolute;
+    bottom: 0;
+    height: 4px;
+    cursor:pointer;
+}
+
+.circle {
+    background: rgb(29, 0, 196);
+    width: 12px;
+    height: 12px;
+    border-radius: 11px;
+    position: absolute;
+    bottom: -2px;
+    transition: left 0.5s;
+}
+.songTime .songInfo{
+color:black;
+
+}
+.songTime {
+    text-align: end;
+    font-size: 18px;
+}
+
+.songInfo {
+    color: black;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 50%; /* Adjust the width as needed */
+    flex-shrink: 1; /* Allows the element to shrink if needed */
+    font-size: 18px;
+  }
+  .hamBurgerDiv {
+   display:none;
+   background-color:black;
+    padding:10px;
+  }
+  .cross-btn {
+    position:absolute;
+    left:78%;
+    transition:3s;
+    display:none;
+    height:40px;
+    width:50px;
+    text-align: center;
+    z-index:10;
+    top:5%;
+  }
+
+  .songTime-Container {
+    display:flex;
+    align-items: center;
+    justify-content: end;
+    gap:10px;
+    margin-right:30px;
+  }
+  
+  .timeVol {
+    display:flex;
+  }
+  .volume {
+    display:flex;
+  }
+  .valRange {
+    width:70px;
+  }
+ @media (max-width:1100px) {
+    .left {
+        background-color:red;
+        position: absolute;
+        left:-100%;
+        transition: all 1.5s;
+        z-index:1;
+        width:350px;
+    }
+    .cross-btn {
+        left:36%;
+    }
+    .playlist-svg {
+      display:none;
+    }
+    .loader {
+        display:none;
+    }
+    .right {
+        width:100%;
+    }
+    .hamBurgerDiv {
+        display:block;
+    }
+    .header-tags {
+        display:none;
+    }
+     .songAlbums {
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+     }
+ }
+
+ @media (max-width :700px)
+ {
+    .songAlbums {
+        grid-template-columns: 1fr 1fr 1fr;
+     }
+ }
+
+ @media (max-width : 400px)
+ {
+    * {
+        font-size: 15px;
+    }
+    .cross-btn {
+        left:80%;
+    }
+    .loader {
+        display:none;
+    }
+    .playlist-svg {
+        display:none;
+    }
+
+    .songAlbums {
+        grid-template-columns: 1fr;
+        justify-content: center;
+        align-items: center;
+        place-items: center;
+        gap:50px;
+        height:370px;
+     }
+    .card {
+        width: 220px;
+        border-radius: 10px;
+        padding: 10px;
+        position: relative;
+    }
+    
+    .card img {
+        width: 210px;
+    }
+    
+    .card h2 {
+        font-size: 20px;
+    }
+    
+    .card p {
+        font-size: 16px;
+    }
+    .hamBurgerDiv {
+        transform : scale(0.8);
+    }
+    .logIn {
+        transform : scale(0.8);
+    }
+    .signUp {
+        transform : scale(0.8);
+    }
+    .spotifyPlaylists {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    .playBar {
+        width:90%;
+        grid-template-columns: 1fr 1fr 2fr;
+        left:5px;
+    }
+
+    .songTime .songInfo{
+        color:black;
+        
+        }
+        .songTime {
+            text-align: end;
+            font-size: 13px;
+        }
+        
+        .songInfo {
+            color: black;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            width: 70%; /* Adjust the width as needed */
+            flex-shrink: 1; /* Allows the element to shrink if needed */
+            font-size: 13px;
+          }
+          .left {
+            width:97%;
+          }
+
+          .songTime-Container {
+            gap:4px;
+            margin-right:-10px;
+          }
+          .volume img {
+            height:17px;
+          }
+          .valRange {
+            width:50px;
+          }
+
+          .play {
+            bottom: 30px;
+            right: 0;
+            left: 170px;
+        }
+ }
+
+ @media (min-width : 1400px)
+ {
+.cardContainer{
+    height:500px;
+}
+.playBar {
+    bottom:-90px;
+}
+ }
+
+ @media (min-width : 2000px)
+ {
+.cardContainer{
+    height:800px;
+}
+.playBar {
+    bottom:-400px;
+}
+.songList {
+    height:500px;
+}
+ }
+
+/* Mood Selector Overlay */
+.mood-selector-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.9);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.5s ease, visibility 0.5s ease;
+    z-index: 9999; /* Ensure it is on top */
+}
+
+.mood-content {
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 10px;
+    text-align: center;
+    width: 400px; /* Increase the width */
+    height:300px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    transform: scale(0.7);
+    transition: transform 0.4s ease;
+}
+
+.mood-selector-overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.mood-content.active {
+    transform: scale(1);
+}
+
+/* Headings and Text */
+h2 {
+    margin-bottom: 15px;
+    font-size: 30px;
+    color: #ffffff;
+    text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.8), 0px 0px 8px rgba(255, 255, 255, 0.6);
+}
+
+p {
+    font-size: 20px;
+    color: #ffffff;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8), 0px 0px 6px rgba(255, 255, 255, 0.5);
+}
+
+
+/* Mood Buttons */
+.mood-options {
+    display: flex;
+    justify-content: space-around;
+    margin: 20px 0;
+}
+/*
+.mood-btn {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+.mood-btn:hover {
+    background-color: #45a049;
+}
+*/
+/* Skip Button */
+/* From Uiverse.io by mrtqzbek11 */ 
+.skip-btn {
+    width: 165px;
+    height: 62px;
+    cursor: pointer;
+    color: #fff;
+    font-size: 17px;
+    border-radius: 1rem;
+    border: none;
+    position: relative;
+    background: #100720;
+    transition: 0.1s;
+    left:33%;
+    top:10px;
+  }
+  
+  .skip-btn::after {
+    content: '';
+    width: 100%;
+    height: 100%;
+    background-image: radial-gradient( circle farthest-corner at 10% 20%,  rgba(255,94,247,1) 17.8%, rgba(2,245,255,1) 100.2% );
+    filter: blur(15px);
+    z-index: -1;
+    position: absolute;
+    left: 0;
+    top: 0;
+  }
+  
+  .skip-btn:active {
+    transform: scale(0.9) rotate(3deg);
+    background: radial-gradient( circle farthest-corner at 10% 20%,  rgba(255,94,247,1) 17.8%, rgba(2,245,255,1) 100.2% );
+    transition: 0.5s;
+  }
+
+/* From Uiverse.io by gharsh11032000 */ 
+.mood-btn {
+    position: relative;
+    width: 120px;
+    height: 40px;
+    background-color: #000;
+    display: flex;
+    align-items: center;
+    color: white;
+    flex-direction: column;
+    justify-content: center;
+    border: none;
+    padding: 12px;
+    gap: 12px;
+    border-radius: 8px;
+    cursor: pointer;
+  }
+  
+  .mood-btn::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    left: -4px;
+    top: -1px;
+    margin: auto;
+    width: 128px;
+    height: 48px;
+    border-radius: 10px;
+    background: linear-gradient(-45deg, #e81cff 0%, #40c9ff 100% );
+    z-index: -10;
+    pointer-events: none;
+    transition: all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  }
+  
+  .mood-btn::after {
+    content: "";
+    z-index: -1;
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(-45deg, #fc00ff 0%, #00dbde 100% );
+    transform: translate3d(0, 0, 0) scale(0.95);
+    filter: blur(20px);
+  }
+  
+  .mood-btn:hover::after {
+    filter: blur(30px);
+  }
+  
+  .mood-btn:hover::before {
+    transform: rotate(-180deg);
+  }
+  
+  .mood-btn:active::before {
+    scale: 0.7;
+  }
+  
+/* For the overlay card */
+
+.overlay-card {
+    background:transparent;
+    width:500px;
+    text-align: center;
+    display:flex;
+    justify-content: center;
+    flex-direction: column;
+    gap:10px;
+}
+
+@media (max-width : 400px)
+{
+
+    /* Headings and Text */
+h2 {
+    font-size: 20px;
+}
+
+p {
+    font-size: 15px;
+}
+
+
+/* Mood Buttons */
+.mood-options {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap:15px;
+}
+.skip-btn {
+    left:24%;
+}
+}
