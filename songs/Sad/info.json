@@ -1,4 +1,9 @@
 {
     "title":"Sad Music",
-    "description":"chill beats, lofi bites,new tracks"
+    "description":"chill beats, lofi bites,new tracks",
+    "music": [
+        "songs/Sad/amalgam-217007.mp3",
+        "songs/Sad/in-slow-motion-inspiring-ambient-lounge-219592.mp3",
+         "songs/Sad/StockTune-Lost In Blue Shadows_1723136966.mp3"
+        ]
 }
