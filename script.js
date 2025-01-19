@@ -55,7 +55,7 @@ function playMusic(track) {
 async function displayAlbums(selectedMood = null) {
     let baseUrl = window.location.origin;
     // Fetch the main songs.json file
-    let response = await fetch(`${baseUrl}/songs/songs.json`);
+    let response = await fetch(`https://shahzaibashfaqsal.github.io/Audio_player/songs/songs.json`);
     let data = await response.json();
 
     // Extract the folders array from the JSON
