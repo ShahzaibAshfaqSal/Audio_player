@@ -15,13 +15,8 @@ async function getSongs(folder) {
     currentFolder = folder;
 
     // Fetch the folder's info.json file
-    let response = await fetch(`/${folder}/info.json`);
+    let response = await fetch(`https://shahzaibashfaqsal.github.io/Audio_player/${folder}/info.json`);
     
-    if (!response.ok) {
-        console.error(`Failed to fetch info.json for folder: ${folder}`);
-        return []; // Return an empty array if info.json is missing or fails to fetch
-    }
-
     let info = await response.json();
 
     // Check if the music array exists in info.json
@@ -55,7 +50,7 @@ function playMusic(track) {
 async function displayAlbums(selectedMood = null) {
     let baseUrl = window.location.origin;
     // Fetch the main songs.json file
-    let response = await fetch("https://shahzaibashfaqsal.github.io/Audio_player/songs/songs.json");
+    let response = await fetch(`https://shahzaibashfaqsal.github.io/Audio_player/songs/songs.json`);
     let data = await response.json();
 
     // Extract the folders array from the JSON
@@ -76,7 +71,7 @@ async function displayAlbums(selectedMood = null) {
         }
 
         // Fetch album details (info.json for each folder)
-        let albumResponse = await fetch(`/songs/${folder}/info.json`);
+        let albumResponse = await fetch(`https://shahzaibashfaqsal.github.io/Audio_player/songs/${folder}/info.json`);
         let albumInfo = await albumResponse.json();
 
         // Add the album card to the page
@@ -92,7 +87,7 @@ async function displayAlbums(selectedMood = null) {
                         </g>
                     </svg>
                 </div>
-                <img src="/songs/${folder}/Cover.jpeg" alt="" />
+                <img src="https://shahzaibashfaqsal.github.io/Audio_player/songs/${folder}/Cover.jpeg" alt="" />
                 <h2>${albumInfo.title}</h2>
                 <p>${albumInfo.description}</p>
             </div>`;
