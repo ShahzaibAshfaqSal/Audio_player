@@ -12,25 +12,36 @@ function formatTime(seconds) {
 }
 
 async function getSongs(folder) {
-    let baseUrl = window.location.origin;
     currentFolder = folder;
-    let a = await fetch(`${baseUrl}/${folder}/`);
-    let response = await a.text();
-    let div = document.createElement("div");
-    div.innerHTML = response;
-    let as = div.getElementsByTagName('a');
-    songs = [];
-    for (let i = 0; i < as.length; i++) {
-        const element = as[i];
-        if (element.href.endsWith('mp3')) {
-            songs.push(element.href.split(`/${folder}/`)[1]);
-        }
+
+    // Fetch the folder's info.json file
+    let response = await fetch(`/${folder}/info.json`);
+    
+    if (!response.ok) {
+        console.error(`Failed to fetch info.json for folder: ${folder}`);
+        return []; // Return an empty array if info.json is missing or fails to fetch
     }
-    return songs; // Ensure songs are returned after fetching
+
+    let info = await response.json();
+
+    // Check if the music array exists in info.json
+    if (!info.music || !Array.isArray(info.music)) {
+        console.error(`No valid 'music' array found in info.json for folder: ${folder}`);
+        return []; // Return an empty array if music array is invalid or missing
+    }
+
+    // Push the song paths from the music array into the songs array
+     songs = [];
+    for (let songPath of info.music) {
+        console.log(songPath);
+        songs.push(songPath); // Add each song path to the songs array
+    }
+
 }
 
+
 function playMusic(track) {
-    currentSong.src = `/${currentFolder}/` + track;
+    currentSong.src = track;
     currentSong.play();
     play.src = "8665214_circle_pause_icon.png";
     let songInfo = document.querySelector(".songInfo");
@@ -42,56 +53,49 @@ function playMusic(track) {
 }
 
 async function displayAlbums(selectedMood = null) {
-    const baseUrl = window.location.origin; // or window.location.pathname if needed
-    let a = await fetch(`${baseUrl}/songs/`);
-    let response = await a.text();
-    let div = document.createElement("div");
-    div.innerHTML = response;
-    let anchors = div.getElementsByTagName("a");
+    let baseUrl = window.location.origin;
+    // Fetch the main songs.json file
+    let response = await fetch(`${baseUrl}/songs/songs.json`);
+    let data = await response.json();
+
+    // Extract the folders array from the JSON
+    let folders = data.folders;
 
     // Clear the current albums display
     let songAlbums = document.getElementsByClassName("songAlbums")[0];
     songAlbums.innerHTML = '';
 
-    // Clear the song List on new albums mood 
-
+    // Clear the song list when displaying new albums
     let songsUL = document.querySelector('.songList ul');
     songsUL.innerHTML = '';
 
-    for (let i = 0; i < anchors.length; i++) {
-        let e = anchors[i];
-
-        if (e.href.includes("/songs/")) {
-            let folder = e.href.split("/").filter(Boolean).slice(-1)[0]; // Folder name
-
-            // If a mood is selected, only show albums matching the mood
-            if (selectedMood && folder.toLowerCase() !== selectedMood.toLowerCase()) {
-                continue; // Skip folders that don't match the mood
-            }
-
-            // Fetch album details (info.json)
-            
-            let a = await fetch(`${baseUrl}/songs/${folder}/info.json`);
-            let albumInfo = await a.json();
-
-            // Add the album card to the page
-            songAlbums.innerHTML += `
-                <div data-folder="${folder}" class="card">
-                    <div class="play">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32">
-                            <circle cx="16" cy="16" r="16" fill="green" />
-                            <g transform="translate(4, 4) scale(1)">
-                                <path
-                                    d="M18.8906 12.846C18.5371 14.189 16.8667 15.138 13.5257 17.0361C10.296 18.8709 8.6812 19.7884 7.37983 19.4196C6.8418 19.2671 6.35159 18.9776 5.95624 18.5787C5 17.6139 5 15.7426 5 12C5 8.2574 5 6.3861 5.95624 5.42132C6.35159 5.02245 6.8418 4.73288 7.37983 4.58042C8.6812 4.21165 10.296 5.12907 13.5257 6.96393C16.8667 8.86197 18.5371 9.811 18.8906 11.154C19.0365 11.7084 19.0365 12.2916 18.8906 12.846Z"
-                                    stroke="black" stroke-width="1.5" stroke-linejoin="round" fill="none" />
-                            </g>
-                        </svg>
-                    </div>
-                    <img src="/songs/${folder}/Cover.jpeg" alt="" />
-                    <h2>${albumInfo.title}</h2>
-                    <p>${albumInfo.description}</p>
-                </div>`;
+    for (let folder of folders) {
+        // If a mood is selected, only show albums matching the mood
+        if (selectedMood && folder.toLowerCase() !== selectedMood.toLowerCase()) {
+            continue; // Skip folders that don't match the mood
         }
+
+        // Fetch album details (info.json for each folder)
+        let albumResponse = await fetch(`/songs/${folder}/info.json`);
+        let albumInfo = await albumResponse.json();
+
+        // Add the album card to the page
+        songAlbums.innerHTML += `
+            <div data-folder="${folder}" class="card">
+                <div class="play">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32">
+                        <circle cx="16" cy="16" r="16" fill="green" />
+                        <g transform="translate(4, 4) scale(1)">
+                            <path
+                                d="M18.8906 12.846C18.5371 14.189 16.8667 15.138 13.5257 17.0361C10.296 18.8709 8.6812 19.7884 7.37983 19.4196C6.8418 19.2671 6.35159 18.9776 5.95624 18.5787C5 17.6139 5 15.7426 5 12C5 8.2574 5 6.3861 5.95624 5.42132C6.35159 5.02245 6.8418 4.73288 7.37983 4.58042C8.6812 4.21165 10.296 5.12907 13.5257 6.96393C16.8667 8.86197 18.5371 9.811 18.8906 11.154C19.0365 11.7084 19.0365 12.2916 18.8906 12.846Z"
+                                stroke="black" stroke-width="1.5" stroke-linejoin="round" fill="none" />
+                        </g>
+                    </svg>
+                </div>
+                <img src="/songs/${folder}/Cover.jpeg" alt="" />
+                <h2>${albumInfo.title}</h2>
+                <p>${albumInfo.description}</p>
+            </div>`;
     }
 
     // Add event listeners to the dynamically created cards
@@ -101,6 +105,7 @@ async function displayAlbums(selectedMood = null) {
         });
     });
 }
+
 
 
 async function loadSongs(folder) {
