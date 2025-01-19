@@ -1,4 +1,9 @@
 {
     "title":"Energetic Music",
-    "description":"Lets hit the Gym"
+    "description":"Lets hit the Gym",
+    "music": [
+    "songs/Energetic/Aylex - Building Dreams (freetouse.com).mp3",
+    "songs/Energetic/Aylex - Furious (freetouse.com).mp3",
+     "songs/Energetic/Aylex - Living (freetouse.com).mp3"
+    ]
 }
