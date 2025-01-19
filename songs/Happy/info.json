@@ -1,4 +1,9 @@
 {
     "title":"Happy Music",
-    "description":"Fell the joy in the songs"
+    "description":"Fell the joy in the songs",
+    "music": [
+        "songs/Happy/Luke Bergs - Aurora (freetouse.com).mp3",
+        "songs/Happy/StockTune-Echoes Of Eternal Hearts_1723137606.mp3",
+        "songs/Happy/StockTune-Reflective Rhythms Of Night_1723136751.mp3"
+    ]
 }
