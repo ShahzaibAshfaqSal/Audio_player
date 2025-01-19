@@ -12,8 +12,9 @@ function formatTime(seconds) {
 }
 
 async function getSongs(folder) {
+    let baseUrl = window.location.origin;
     currentFolder = folder;
-    let a = await fetch(`${window.location.pathname}${folder}/`);
+    let a = await fetch(`${baseUrl}/${folder}/`);
     let response = await a.text();
     let div = document.createElement("div");
     div.innerHTML = response;
@@ -29,7 +30,7 @@ async function getSongs(folder) {
 }
 
 function playMusic(track) {
-    currentSong.src = `${window.location.pathname}${currentFolder}/` + track;
+    currentSong.src = `/${currentFolder}/` + track;
     currentSong.play();
     play.src = "8665214_circle_pause_icon.png";
     let songInfo = document.querySelector(".songInfo");
@@ -41,7 +42,8 @@ function playMusic(track) {
 }
 
 async function displayAlbums(selectedMood = null) {
-    let a = await fetch(`${window.location.pathname}songs/`);
+    const baseUrl = window.location.origin; // or window.location.pathname if needed
+    let a = await fetch(`${baseUrl}/songs/`);
     let response = await a.text();
     let div = document.createElement("div");
     div.innerHTML = response;
@@ -51,7 +53,8 @@ async function displayAlbums(selectedMood = null) {
     let songAlbums = document.getElementsByClassName("songAlbums")[0];
     songAlbums.innerHTML = '';
 
-    // Clear the song list on new albums mood 
+    // Clear the song List on new albums mood 
+
     let songsUL = document.querySelector('.songList ul');
     songsUL.innerHTML = '';
 
@@ -67,8 +70,8 @@ async function displayAlbums(selectedMood = null) {
             }
 
             // Fetch album details (info.json)
-            const baseUrl = window.location.origin;
-            let a = await fetch(`${baseUrl}${window.location.pathname}songs/${folder}/info.json`);
+            
+            let a = await fetch(`${baseUrl}/songs/${folder}/info.json`);
             let albumInfo = await a.json();
 
             // Add the album card to the page
@@ -84,7 +87,7 @@ async function displayAlbums(selectedMood = null) {
                             </g>
                         </svg>
                     </div>
-                    <img src="${window.location.pathname}songs/${folder}/Cover.jpeg" alt="" />
+                    <img src="/songs/${folder}/Cover.jpeg" alt="" />
                     <h2>${albumInfo.title}</h2>
                     <p>${albumInfo.description}</p>
                 </div>`;
@@ -98,6 +101,7 @@ async function displayAlbums(selectedMood = null) {
         });
     });
 }
+
 
 async function loadSongs(folder) {
     await getSongs(folder);
@@ -143,7 +147,7 @@ async function loadSongs(folder) {
 }
 
 async function main() {
-    await displayAlbums();
+   await displayAlbums();
 
     play.addEventListener('click', () => {
         if (currentSong.paused) {
@@ -194,56 +198,86 @@ async function main() {
         currentSong.volume = parseInt(e.target.value) / 100;
     });
 
-    // Volume mute/unmute control
-    document.querySelector('.volume>img').addEventListener('click', (e) => {
-        if (e.target.src.includes("f974e30f")) {
+
+    // Add an event listener to mute the volume 
+
+    document.querySelector('.volume>img').addEventListener('click',(e)=>
+    {
+        if(e.target.src == "http://127.0.0.1:5500/f974e30f-891f-4677-ae5c-5b99a4a74200.svg")
+        {
             e.target.src = "volume-mute-svgrepo-com.svg";
             currentSong.volume = 0;
             document.querySelector('.valRange').value = 0;
-        } else {
-            e.target.src = "f974e30f-6ee7-4561-a23c-d5130f1a30da.svg";
-            currentSong.volume = 1;
-            document.querySelector('.valRange').value = 100;
         }
-    });
+        else
+        {
+            e.target.src = "f974e30f-891f-4677-ae5c-5b99a4a74200.svg";
+            currentSong.volume = .4;
+            document.querySelector('.valRange').value = 40;
+        }
+    })
 }
 
-main();
+// Hambuger div event liatener to show cross button
+window.setInterval(()=>
+{
+    if(window.innerWidth>1100)
+        document.querySelector('.cross-btn').style.display = 'none';
+},1000)
 
+
+document.querySelector('.hamBurgerDiv').addEventListener('click',()=>
+{
+    document.querySelector('.cross-btn').style.display = 'block';
+})
+
+document.querySelector('.cross-btn').addEventListener('click',()=>
+{
+    document.querySelector('.cross-btn').style.display = 'none';
+})
+main();
 
 
 
 /// New One here to be placed 
 
 // Select the mood overlay and buttons
-
-const moodSelectorOverlay = document.getElementById('moodSelectorOverlay');
-const moodButtons = document.querySelectorAll('.mood-btn');
-const skipButton = document.querySelector('.skip-btn');
-
-// Show modal after 2 seconds
-setTimeout(() => {
-    moodSelectorOverlay.classList.add('active');
-    document.querySelector('.mood-content').classList.add('active');
-}, 2000);
-
-moodButtons.forEach(button => {
-    button.addEventListener('click', (e) => {
-        const selectedMood = e.target.getAttribute('data-mood');
-        console.log('Selected Mood:', selectedMood);
-        displayAlbums(selectedMood); // Display albums that match the selected mood
+function moodPreferenceTaker()
+{
+    const moodSelectorOverlay = document.getElementById('moodSelectorOverlay');
+    const moodButtons = document.querySelectorAll('.mood-btn');
+    const skipButton = document.querySelector('.skip-btn');
+    
+    // Show modal after 2 seconds
+    setTimeout(() => {
+        moodSelectorOverlay.classList.add('active');
+        document.querySelector('.mood-content').classList.add('active');
+    }, 2000);
+    
+    moodButtons.forEach(button => {
+        button.addEventListener('click', (e) => {
+            const selectedMood = e.target.getAttribute('data-mood');
+            console.log('Selected Mood:', selectedMood);
+            displayAlbums(selectedMood); // Display albums that match the selected mood
+            hideMoodSelector();
+        });
+    });
+    
+    skipButton.addEventListener('click', () => {
+        console.log('User skipped mood selection');
+        displayAlbums(); // Show all albums if the user skips mood selection
         hideMoodSelector();
     });
-});
-
-skipButton.addEventListener('click', () => {
-    console.log('User skipped mood selection');
-    displayAlbums(); // Show all albums if the user skips mood selection
-    hideMoodSelector();
-});
+}
+moodPreferenceTaker();
 
 // Function to hide mood selector
 function hideMoodSelector() {
     moodSelectorOverlay.classList.remove('active');
     document.querySelector('.mood-content').classList.remove('active');
 }
+
+
+// Add event Listener to choose mood button 
+
+document.querySelector('.signUp').addEventListener('click',moodPreferenceTaker);
