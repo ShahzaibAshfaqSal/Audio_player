@@ -149,7 +149,6 @@ async function loadSongs(folder) {
 }
 
 async function main() {
-   await displayAlbums();
 
     play.addEventListener('click', () => {
         if (currentSong.paused) {
