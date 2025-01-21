@@ -28,7 +28,7 @@ async function getSongs(folder) {
 
      songs = [];
     for (let songPath of info.music) {
-        console.log(songPath);
+      //  console.log(songPath);
         songs.push(songPath); 
     }
 
@@ -181,26 +181,45 @@ async function main() {
     });
 
     previous.addEventListener('click', () => {
-        // Extract the current song file name
-     
-        let index = songs.indexOf(currentSong.src); // Find the index in the songs array
-        console.log(currentSong.src);
+        // Dynamically find the relative path starting from "songs/"
+        let currentPathIndex = currentSong.src.indexOf("songs/");
+        if (currentPathIndex === -1) {
+            console.error("Current song path does not contain 'songs/'.");
+            return;
+        }
+        
+        // Extract and decode the relative path
+        let currentPath = decodeURIComponent(currentSong.src.substring(currentPathIndex));
+    
+        // Find the index of the current song in the songs array
+        let index = songs.indexOf(currentPath);
+    
         if (index === -1) {
             console.error("Current song not found in the songs array.");
             return;
         }
     
         // Navigate to the previous song
-        if (index - 1 < 0)
-            playMusic(songs[songs.length - 1]); // Go to the last song if at the start
-        else
+        if (index - 1 < 0) {
+            playMusic(songs[songs.length - 1]); // Play the last song if at the first song
+        } else {
             playMusic(songs[index - 1]); // Play the previous song
+        }
     });
     
     next.addEventListener('click', () => {
-        // Extract the current song file name
-        let currentFile = currentSong.src.split('/').pop(); // Get the last part of the URL
-        let index = songs.indexOf(currentFile); // Find the index in the songs array
+        // Dynamically find the relative path starting from "songs/"
+        let currentPathIndex = currentSong.src.indexOf("songs/");
+        if (currentPathIndex === -1) {
+            console.error("Current song path does not contain 'songs/'.");
+            return;
+        }
+        
+        // Extract and decode the relative path
+        let currentPath = decodeURIComponent(currentSong.src.substring(currentPathIndex));
+    
+        // Find the index of the current song in the songs array
+        let index = songs.indexOf(currentPath);
     
         if (index === -1) {
             console.error("Current song not found in the songs array.");
@@ -208,17 +227,18 @@ async function main() {
         }
     
         // Navigate to the next song
-        if (index + 1 >= songs.length)
-            playMusic(songs[0]); // Loop back to the first song if at the end
-        else
+        if (index + 1 >= songs.length) {
+            playMusic(songs[0]); // Play the first song if at the last song
+        } else {
             playMusic(songs[index + 1]); // Play the next song
+        }
     });
     
+    // Volume control
     document.querySelector('.valRange').addEventListener("change", (e) => {
-        currentSong.volume = parseInt(e.target.value) / 100; // Adjust volume
+        currentSong.volume = parseInt(e.target.value) / 100;
     });
     
-
 
     // Add an event listener to mute the volume 
 
@@ -278,14 +298,14 @@ function moodPreferenceTaker()
     moodButtons.forEach(button => {
         button.addEventListener('click', (e) => {
             const selectedMood = e.target.getAttribute('data-mood');
-            console.log('Selected Mood:', selectedMood);
+        //    console.log('Selected Mood:', selectedMood);
             displayAlbums(selectedMood); // Display albums that match the selected mood
             hideMoodSelector();
         });
     });
     
     skipButton.addEventListener('click', () => {
-        console.log('User skipped mood selection');
+    //    console.log('User skipped mood selection');
         displayAlbums(); // Show all albums if the user skips mood selection
         hideMoodSelector();
     });
