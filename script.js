@@ -184,7 +184,7 @@ async function main() {
         // Extract the current song file name
      
         let index = songs.indexOf(currentSong.src); // Find the index in the songs array
-    
+        console.log(currentSong.src);
         if (index === -1) {
             console.error("Current song not found in the songs array.");
             return;
