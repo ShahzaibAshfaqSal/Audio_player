@@ -19,62 +19,66 @@ async function getSongs(folder) {
     
     let info = await response.json();
 
-    // Check if the music array exists in info.json
+
     if (!info.music || !Array.isArray(info.music)) {
         console.error(`No valid 'music' array found in info.json for folder: ${folder}`);
-        return []; // Return an empty array if music array is invalid or missing
+        return []; 
     }
 
-    // Push the song paths from the music array into the songs array
+
      songs = [];
     for (let songPath of info.music) {
         console.log(songPath);
-        songs.push(songPath); // Add each song path to the songs array
+        songs.push(songPath); 
     }
 
 }
 
 
 function playMusic(track) {
-    currentSong.src = track;
-    currentSong.play();
-    play.src = "8665214_circle_pause_icon.png";
+    // Set the new track and start playing
+    currentSong.src = track; // Assign the new track source
+    currentSong.play(); // Play the new track
+
+    // Update UI elements
+    play.src = "8665214_circle_pause_icon.png"; // Update play button to pause icon
     let songInfo = document.querySelector(".songInfo");
     let songTime = document.querySelector(".songTime");
-    songInfo.innerHTML = track;
-    songTime.innerHTML = "00:00/00:00";
+    songInfo.innerHTML = track; // Display track name
+    songTime.innerHTML = "00:00 / 00:00"; // Reset time display
     songInfo.style.color = "black";
     songTime.style.color = "black";
 }
 
+
 async function displayAlbums(selectedMood = null) {
     let baseUrl = window.location.origin;
-    // Fetch the main songs.json file
+
     let response = await fetch(`https://shahzaibashfaqsal.github.io/Audio_player/songs/songs.json`);
     let data = await response.json();
 
-    // Extract the folders array from the JSON
+
     let folders = data.folders;
 
-    // Clear the current albums display
+
     let songAlbums = document.getElementsByClassName("songAlbums")[0];
     songAlbums.innerHTML = '';
 
-    // Clear the song list when displaying new albums
+
     let songsUL = document.querySelector('.songList ul');
     songsUL.innerHTML = '';
 
     for (let folder of folders) {
-        // If a mood is selected, only show albums matching the mood
+
         if (selectedMood && folder.toLowerCase() !== selectedMood.toLowerCase()) {
-            continue; // Skip folders that don't match the mood
+            continue; 
         }
 
-        // Fetch album details (info.json for each folder)
+
         let albumResponse = await fetch(`https://shahzaibashfaqsal.github.io/Audio_player/songs/${folder}/info.json`);
         let albumInfo = await albumResponse.json();
 
-        // Add the album card to the page
+
         songAlbums.innerHTML += `
             <div data-folder="${folder}" class="card">
                 <div class="play">
@@ -93,7 +97,7 @@ async function displayAlbums(selectedMood = null) {
             </div>`;
     }
 
-    // Add event listeners to the dynamically created cards
+
     Array.from(document.getElementsByClassName("card")).forEach(e => {
         e.addEventListener('click', async item => {
             await loadSongs(`songs/${item.currentTarget.dataset.folder}`);
@@ -136,8 +140,6 @@ async function loadSongs(folder) {
         songsUL.appendChild(songsLI);
     }
 
-    let audio = new Audio(songs[0]);
-    audio.play();
 
     Array.from(document.querySelector('.songList').getElementsByTagName('li')).forEach(e => {
         e.addEventListener('click', () => {
@@ -179,24 +181,43 @@ async function main() {
     });
 
     previous.addEventListener('click', () => {
-        let index = songs.indexOf(currentSong.src.split('/').slice(-1)[0]);
+        // Extract the current song file name
+     
+        let index = songs.indexOf(currentSong.src); // Find the index in the songs array
+    
+        if (index === -1) {
+            console.error("Current song not found in the songs array.");
+            return;
+        }
+    
+        // Navigate to the previous song
         if (index - 1 < 0)
-            playMusic(songs[songs.length - 1]);
+            playMusic(songs[songs.length - 1]); // Go to the last song if at the start
         else
-            playMusic(songs[index - 1]);
+            playMusic(songs[index - 1]); // Play the previous song
     });
-
+    
     next.addEventListener('click', () => {
-        let index = songs.indexOf(currentSong.src.split('/').slice(-1)[0]);
+        // Extract the current song file name
+        let currentFile = currentSong.src.split('/').pop(); // Get the last part of the URL
+        let index = songs.indexOf(currentFile); // Find the index in the songs array
+    
+        if (index === -1) {
+            console.error("Current song not found in the songs array.");
+            return;
+        }
+    
+        // Navigate to the next song
         if (index + 1 >= songs.length)
-            playMusic(songs[0]);
+            playMusic(songs[0]); // Loop back to the first song if at the end
         else
-            playMusic(songs[index + 1]);
+            playMusic(songs[index + 1]); // Play the next song
     });
-
+    
     document.querySelector('.valRange').addEventListener("change", (e) => {
-        currentSong.volume = parseInt(e.target.value) / 100;
+        currentSong.volume = parseInt(e.target.value) / 100; // Adjust volume
     });
+    
 
 
     // Add an event listener to mute the volume 
